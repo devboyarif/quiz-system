@@ -10,6 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <form wire:submit.prevent="save">
+                        <div class="mt-4">
+                            <x-input-label for="questions" value="Questions" />
+                            {{-- {{ json_encode($this->listsForFields['questions']) }} --}}
+                            <x-select-list class="w-full" id="questions" name="questions" :options="$this->listsForFields['questions']" wire:model="questions" multiple />
+                            <x-input-error :messages="$errors->get('questions')" class="mt-2" />
+                        </div>
+
                         <div>
                             <x-input-label for="title" value="Title" />
                             <x-text-input wire:model.lazy="quiz.title" id="title" class="block mt-1 w-full" type="text" name="title" required />

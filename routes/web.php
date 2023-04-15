@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Questions\QuestionForm;
 use App\Http\Livewire\Questions\QuestionList;
+use App\Models\Quiz;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,12 @@ use App\Http\Livewire\Questions\QuestionList;
 */
 
 Route::get('/', function () {
+    $quiz = Quiz::find(2);
+    // $quiz = Quiz::with('questions')->get();
+
+    return $quiz->questions->pluck('id')->toArray();
+
+
     return view('welcome');
 });
 

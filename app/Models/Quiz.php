@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\Question;
 
 class Quiz extends Model
 {
@@ -23,4 +25,9 @@ class Quiz extends Model
         'published' => 'boolean',
         'public'    => 'boolean',
     ];
+
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Question::class, 'question_quiz', 'quiz_id', 'question_id');
+    }
 }
