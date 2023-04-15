@@ -1,12 +1,13 @@
 <?php
 
+use App\Models\Quiz;
 use App\Http\Livewire\Quiz\QuizForm;
 use App\Http\Livewire\Quiz\QuizList;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Questions\QuestionForm;
 use App\Http\Livewire\Questions\QuestionList;
-use App\Models\Quiz;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +20,17 @@ use App\Models\Quiz;
 |
 */
 
-Route::get('/', function () {
-    $quiz = Quiz::find(2);
-    // $quiz = Quiz::with('questions')->get();
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-    return $quiz->questions->pluck('id')->toArray();
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
