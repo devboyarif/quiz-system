@@ -28,6 +28,6 @@ class Question extends Model
 
     public function quizzes(): BelongsToMany
     {
-        return $this->belongsToMany(Quiz::class);
+        return $this->belongsToMany(Quiz::class, 'question_quiz', 'question_id', 'quiz_id');
     }
 }

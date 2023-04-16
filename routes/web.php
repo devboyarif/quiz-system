@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Quiz;
+use App\Models\Question;
 use App\Http\Livewire\Quiz\QuizForm;
 use App\Http\Livewire\Quiz\QuizList;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,21 @@ use App\Http\Livewire\Questions\QuestionList;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    // return DB::table('question_quiz')->get();
+
+
+    $quiz = Quiz::find(1);
+    return Question::query()
+        ->inRandomOrder()
+        // ->whereHas('quizzes',function($q){
+        //     $q->where('quiz_id',1);
+        // })
+        ->whereRelation('quizzes','quiz_id', $quiz->id)
+        ->with('quizzes','questionOptions')
+        ->get();
+    // return view('welcome');
+});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -30,6 +43,7 @@ use App\Http\Livewire\Questions\QuestionList;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('quiz/{quiz}/{slug?}', [HomeController::class, 'show'])->name('quiz.show');
 
 
 Route::middleware('auth')->group(function () {
