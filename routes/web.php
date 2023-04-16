@@ -11,6 +11,7 @@ use App\Http\Controllers\ResultController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Questions\QuestionForm;
 use App\Http\Livewire\Questions\QuestionList;
+use App\Http\Controllers\Admin\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,10 +62,10 @@ Route::middleware('auth')->group(function () {
         Route::get('questions', QuestionList::class)->name('questions');
         Route::get('questions/create', QuestionForm::class)->name('questions.create');
         Route::get('questions/{question}', QuestionForm::class)->name('questions.edit');
-
         Route::get('quizzes', QuizList::class)->name('quizzes');
         Route::get('quizzes/create', QuizForm::class)->name('quiz.create');
         Route::get('quizzes/{quiz}', QuizForm::class)->name('quiz.edit');
+        Route::get('tests', TestController::class)->name('tests');
     });
 });
 
