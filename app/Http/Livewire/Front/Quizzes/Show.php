@@ -97,6 +97,6 @@ class Show extends Component
             'result' => $result,
         ]);
 
-        return to_route('home');
+        return to_route('results.show', $test);
     }
 }

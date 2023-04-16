@@ -6,6 +6,7 @@ use App\Http\Livewire\Quiz\QuizForm;
 use App\Http\Livewire\Quiz\QuizList;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Questions\QuestionForm;
 use App\Http\Livewire\Questions\QuestionList;
@@ -44,6 +45,9 @@ Route::get('/', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('quiz/{quiz}/{slug?}', [HomeController::class, 'show'])->name('quiz.show');
+
+Route::get('results', [ResultController::class, 'index'])->name('results.index');
+Route::get('results/{test}', [ResultController::class, 'show'])->name('results.show');
 
 
 Route::middleware('auth')->group(function () {
