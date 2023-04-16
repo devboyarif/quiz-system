@@ -7,7 +7,6 @@ This is a simple quiz/testing system with Laravel, adding a lot of Livewire comp
 <li>Managing Quiz</li>
 <li>Managing Question</li>
 <li>Managing Question Option</li>
-<li>Managing Question </li>
 <li>Managing Quiz Test</li>
 <li>Managing Quiz Test Results</li>
 <li>Timer for Quizzes</li>
